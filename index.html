@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,51 +36,3 @@
 </body>
 </html>
 
-
-<?php
-$insert = false;
-
-if(isset($_POST['name'])){
-        
-//set connection
-$server = "localhost";
-$username = "root";
-$password = "";
-
-//create database connection
-$con = mysqli_connect($server, $username, $password);
-
-
-//check for connection seccuss
-if(!$con){
-    die("Failed connection!".mysqli_connecct_error());
-}
-
-
-//Collect post variables
-$name=$_POST['name'];
-$age=$_POST['age'];
-$gender=$_POST['gender'];
-$email=$_POST['email'];
-$phone=$_POST['phone'];
-//$desc=$_POST['desc'];
-$sql = " INSERT INTO `trip`.`trip` (`name`, `age`, `gender`, `email`, `phone`, `dt`) 
-VALUES ('$name', '$age', '$gender', '$email', '$phone', 
-current_timestamp())";
-
-
-
-
-if($con->query($sql)==true){
-    echo "<script>alert('data inserted');</script>";
-    $insert = true;
-}
-else{
-    echo "ERROR: $sql <br> $con->error";
-}
-
-//close databasse connection
-$con->close();
-}
-
-?>
